@@ -5,6 +5,7 @@
     "start": "node Server.js"
   },
   "dependencies": {
+    "ejs": "^2.3.3",
     "express": "^4.12.3",
     "gulp": "^3.9.0"
   },
