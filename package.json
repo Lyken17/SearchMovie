@@ -1,17 +1,11 @@
 {
-  "name": "info",
-  "version": "0.0.1",
-  "scripts": {
-    "start": "node Server.js"
-  },
+  "name": "node-ejs",
+  "main": "server.js",
   "dependencies": {
-    "ejs": "^2.3.3",
-    "express": "^4.12.3",
-    "gulp": "^3.9.0"
-  },
-  "description": "Haha, a interesting project.",
-  "main": "gulpfile.js",
-  "devDependencies": {},
-  "author": "",
-  "license": "ISC"
+    "ejs": "^1.0.0",
+    "express": "^4.6.1",
+    "gulp": "^3.9.0",
+    "mysql": "^2.8.0",
+    "request": "^2.60.0"
+  }
 }
