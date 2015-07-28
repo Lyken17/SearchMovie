@@ -1,0 +1,77 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body class="container">
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div class="jumbotron">
+      <form action="search" align="center">
+        <p>请输入查询:
+          <input type="text" name="query">
+          <input type="submit" value="搜索">
+        </p>
+      </form>
+    </div>
+    <div class="jumbotron">
+      <p>
+        <%= title %>
+      </p>
+    </div>
+    <% body.forEach(function(body) { %>
+      <div class="jumbotron">
+        <ul>
+          <li>
+            影片名：
+            <%=  body.a_title %>
+            /
+            <%=  body.b_alias %>
+
+            &nbsp &nbsp 
+            发型年份：
+            <%=  body.c_year %>
+          </li>
+          <li>
+            标签：
+            <%=  body.k_info %>
+          </li>
+          <li>
+            豆瓣评分：
+            <%=  body.d_rating %>
+            &nbsp 
+            评分人数：
+            <%=  body.e_comment_amount %>
+          </li>
+          <li>
+            简介：
+            <%=  body.l_intro %>
+          </li>
+          <li>
+            欲知更多：
+            <a href="<%= body.f_link%>">请戳这里 =w=</a>
+          </li>
+        </ul>
+      </div>
+    <% }); %>
+      <div class="jumbotron">
+        <p>
+          <%= body %>
+        </p>
+      </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+
+</html>
