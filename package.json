@@ -1,11 +1,25 @@
 {
-  "name": "node-ejs",
-  "main": "server.js",
+  "name": "yoyo",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node Server.js"
+  },
   "dependencies": {
-    "ejs": "^1.0.0",
-    "express": "^4.6.1",
-    "gulp": "^3.9.0",
-    "mysql": "^2.8.0",
-    "request": "^2.60.0"
-  }
+    "ejs": "^2.3.3",
+    "express": "^4.12.3",
+    "gulp": "^3.9.0"
+  },
+  "description": "Haha, a interesting project.",
+  "main": "gulpfile.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lyken17/SearchMovie.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lyken17/SearchMovie/issues"
+  },
+  "homepage": "https://github.com/Lyken17/SearchMovie#readme"
 }

@@ -1,93 +1,50 @@
-// server.js
-// load the things we need
-var express = require('express');
-var app = express();
-var request = require('request');
+function start() {
+  var express = require("express");
+  var app = express();
+  var router = express.Router();
+  var ejs = require("ejs");
 
-/*
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'my_db'
-});
-
-connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-  console.log('The solution is: ', rows[0].solution);
-});
-connection.end();
-*/
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-app.use(express.static('views'));
-// use res.render to load up an ejs view file
-
-// index page
-app.get('/', function(req, res) {
-  var drinks = [{
-    name: 'Bloody Mary',
-    drunkness: 3
-  }, {
-    name: 'Martini',
-    drunkness: 5
-  }, {
-    name: 'Scotch',
-    drunkness: 10
-  }];
-  var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
-
-  res.render('pages/index', {
-    drinks: drinks,
-    tagline: tagline
+  app.set("view engine","ejs")
+  router.use(function (req,res,next) {
+    console.log("/" + req.method);
+    next();
   });
-});
 
-// search page
-app.get('/search', function(req, res) {
-  var drinks = [{
-    name: 'lalala',
-    drunkness: 3
-  }, {
-    name: 'Martini',
-    drunkness: 5
-  }, {
-    name: 'Scotch',
-    drunkness: 10
-  }];
-  var tagline = "Niconiconi!";
-
-  var ans = req.query.query;
-  if (ans === "NULL") {
-    drinks = [];
-    ans = "None";
-  }
-  var error, response, body;
-  error, response, body =  request("http://www.baidu.com");
-  res.render('pages/search', {
-    drinks: drinks,
-    tagline: ans
+  router.use("/user/:id",function(req,res,next){
+    console.log(req.params.id)
+    if(req.params.id == 0) {
+      res.json({"message" : "You must pass ID other than 0"});
+    }
+    else next();
   });
-});
 
+  router.get("/",function(req,res){
+    res.sendFile(__dirname + "/public/index.html");
+  });
 
-// about page
-app.get('/about', function(req, res) {
-  res.render('pages/about');
-});
+  router.get("/about",function(req,res){
+    res.sendFile(__dirname + "/public/about.html");
+  });
 
-app.get('*', function(req, res) {
-  res.render('pages/404');
-});
+  router.get("/search",function(req,res){
+    res.sendFile(__dirname + "/public/search.html");
+  });
 
+  router.get("/user/:id",function(req,res){
+    res.json({"message" : "Hello "+req.params.id});
+  });
 
+  app.use("/",router);
 
+  app.use(express.static('public'));
 
+  app.use("*",function(req,res){
+    res.sendFile(__dirname + "/public/404.html");
+  });
 
-app.listen(8080, function() {
-  console.log("Live at Port 8080");
-});
+  app.listen(3000,function(){
+    console.log("Live at Port 3000");
+  });
+};
+
+exports.start = start;
