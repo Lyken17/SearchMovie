@@ -63,13 +63,10 @@ app.get('/search', function(req, res) {
         body: tmp
       });
       console.log(tmp);
-
       console.log('-' + '/?query=' + req.query.query.split(" ").join("+") + '-==》Title:' + title );
     });
   });
-
   jsonGet.end();
-
 });
 
 /*
